@@ -22,7 +22,9 @@
             }
 
             .full-height {
-                height: 100vh;
+                height: 18vh;
+
+                border:1px solid lightblue;
             }
 
             .flex-center {
@@ -37,8 +39,9 @@
 
             .top-right {
                 position: absolute;
-                right: 10px;
-                top: 18px;
+                right: 30px;
+                top: 23px;
+                border-color:red;
             }
 
             .content {
@@ -58,10 +61,6 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
         </style>
     </head>
     <body>
@@ -77,19 +76,7 @@
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+          
         </div>
     </body>
 </html>

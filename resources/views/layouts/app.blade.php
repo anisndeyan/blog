@@ -37,6 +37,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                           
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -53,11 +54,14 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="/category/create">Create Category</a>
+                                        <a href="/category/create">Create Post</a>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
+
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
