@@ -3,17 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Category;
-use Auth;
-use App\Http\Requests\CategoryRequest;
-class CategoryController extends Controller
-{
 
-    public function __construct(Category $category)
-    {
-        $this->category = $category;
-    }
+class PostController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -21,11 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       // $x = $this->category->where('name', "sdfgasgbvsr")->first();
-       // dd($x);
-        $categories = $this->category->get();
-        return view('categories.show', ['categories' => $categories]);
-        dd($categories);
+        //
     }
 
     /**
@@ -34,10 +22,8 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
-        $categories = $this->category->where('user_id', Auth::id())->get();
-        return view('categories.addCategory', ['categories' => $categories]);
-
+    {
+        //
     }
 
     /**
@@ -46,18 +32,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(Request $request)
     {
-        $inputs = [
-            'name'  => $request->get('name'),
-            'user_id' => Auth::id()
-            ];
-
-        if($this->category->create($inputs)){
-            return redirect('/')->with('success', 'Category has been successfully created!!!');
-        }
-        
-        return redirect()->back()->with('error', 'Something went wrong!!!');
+        //
     }
 
     /**
@@ -68,8 +45,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = $this->category->where('id', $id)->first();
-        return view('categories.show', ['category' => $category]);
+        //
     }
 
     /**
@@ -105,6 +81,4 @@ class CategoryController extends Controller
     {
         //
     }
-
-    
 }

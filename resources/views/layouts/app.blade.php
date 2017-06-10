@@ -47,15 +47,34 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+
                             <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories
+                                <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="/category/create">Create Category</a></li>
+                                  <li><a href="/category">My Categories</a></li>
+                                  <li><a href="/category">All Categories</a></li>
+                                </ul>
+                            </li>
+                             <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Posts
+                                <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#">Create Post</a></li>
+                                  <li><a href="#">My Posts</a></li>
+                                  <li><a href="#">All Posts</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+
+
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="/category/create">Create Category</a>
-                                        <a href="/category/create">Create Post</a>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -69,6 +88,8 @@
                                     </li>
                                 </ul>
                             </li>
+
+                           
                         @endif
                     </ul>
                 </div>
