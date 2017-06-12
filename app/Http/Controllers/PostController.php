@@ -5,7 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
-{
+{   
+    public function __construct(Post $post, Category $category)
+    {
+        $this->middleware('auth');
+        $this->post() = $post;
+        $this->category() = $category;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -23,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**

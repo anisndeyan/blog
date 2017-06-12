@@ -12,6 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -53,7 +56,7 @@
                                 <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                   <li><a href="/category/create">Create Category</a></li>
-                                  <li><a href="/category">My Categories</a></li>
+                                  <li><a href="/category/myCategories">My Categories</a></li>
                                   <li><a href="/category">All Categories</a></li>
                                 </ul>
                             </li>
@@ -61,7 +64,7 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Posts
                                 <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                  <li><a href="#">Create Post</a></li>
+                                  <li><a href="/post/create">Create Post</a></li>
                                   <li><a href="#">My Posts</a></li>
                                   <li><a href="#">All Posts</a></li>
                                 </ul>
@@ -100,6 +103,11 @@
     </div>
 
     <!-- Scripts -->
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>

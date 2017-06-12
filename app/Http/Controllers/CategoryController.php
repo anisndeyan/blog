@@ -21,11 +21,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       // $x = $this->category->where('name', "sdfgasgbvsr")->first();
-       // dd($x);
         $categories = $this->category->get();
-        return view('categories.show', ['categories' => $categories]);
-        dd($categories);
+        return view('categories.index', ['categories' => $categories]);
     }
 
     /**
@@ -35,8 +32,7 @@ class CategoryController extends Controller
      */
     public function create()
     {   
-        $categories = $this->category->where('user_id', Auth::id())->get();
-        return view('categories.addCategory', ['categories' => $categories]);
+        return view('categories.create');
 
     }
 
@@ -54,7 +50,7 @@ class CategoryController extends Controller
             ];
 
         if($this->category->create($inputs)){
-            return redirect('/')->with('success', 'Category has been successfully created!!!');
+            return redirect()->back()->with('success', 'Category has been successfully created!!!');
         }
         
         return redirect()->back()->with('error', 'Something went wrong!!!');
@@ -72,6 +68,13 @@ class CategoryController extends Controller
         return view('categories.show', ['category' => $category]);
     }
 
+    public function showMyCategories(){
+        $id = Auth::id();
+        $categories = $this->category->where('user_id', $id)->get();
+        return view('categories.myCategories', ['categories' => $categories]);
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -80,7 +83,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = $this->category->find($id);
+        return view("categories.edit", ['category' => $category]);
     }
 
     /**
@@ -90,11 +94,15 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        if($this->category->where('id', $id)->update(['name' => $request->get('name')])){
+            return redirect()->back()->with(['success' => "Category has been successfully updated!!!"]);
+        } else{
+            return redirect()->back()->with(['error' => "Something went wrong!!!"]);
+        }
     }
-
+   
     /**
      * Remove the specified resource from storage.
      *
@@ -103,8 +111,11 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->category->where('id', $id)->delete();
+        $categories = $this->category->get();
+        return redirect()->back()->with( ['categories' => $categories]);
     }
+
 
     
 }
