@@ -4,15 +4,34 @@ namespace App;
 
 use App\Category;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    public function user()
+    
+    protected $table = "posts";
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title', 'text', 'category_id'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        
+    ];
+
+    public function category()
     {
-    	return $this->belongsTo(User::class);
+    	return $this->belongsTo('App\Category');
     }
-    public function categories()
-    {
-    	return $this->belongsToMany(Category::class);
-    }
+
+ 	
 }

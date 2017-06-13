@@ -17,7 +17,7 @@
 				</div>
 			@else
 				<div class='col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-xs-offset-2 col-sm-offset-2'>
-					<a href="/category/{{$category->id}}" class="cat_link col-sm-8"><h2>{{$category->name}}</h2></a>
+					<a href="/category/{{$category->id}}/posts" class="cat_link col-sm-8"><h2>{{$category->name}}</h2></a>
 				</div>
 			@endif	
 

@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('restrict')->onDelete('cascade');
         });
     }
 
@@ -28,6 +29,9 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
+        Schema::table('categories', function (Blueprint $table) {
+         $table->dropForeign('categories_user_id_foreign');
+        });
         Schema::dropIfExists('categories');
     }
 }

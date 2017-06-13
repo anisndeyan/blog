@@ -3,7 +3,7 @@
 @section('content')
 	@foreach($categories as $category)
 		<div class='col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-xs-offset-2 col-sm-offset-2'>
-			<a href='{{$category->id}}' class="cat_link">
+			<a href='/category/{{$category->id}}/posts' class="cat_link">
 				<h1>{{$category->name}}</h1>
 			</a>
 			<a href="/category/{{$category->id}}/edit">

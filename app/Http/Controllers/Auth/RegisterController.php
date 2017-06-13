@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
+use Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -27,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/registration/verification';
 
     /**
      * Create a new controller instance.
@@ -66,6 +68,39 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'token' => md5(time())
         ]);
+    }
+
+
+    protected function verification()
+    {
+
+        if (Auth::user()->confirm == 0) {
+            $token = Auth::user()->token;
+            $url = env('APP_URL', 'http://blog.dev').'/registration/verification/'. $token; 
+            $email = Auth::user()->email;
+            Mail::send('auth.confirmEmail', ['url' => $url], function ($message) use ($email)
+            {
+                $message->from('anisndeyan92@gmail.com', 'Laravel');
+                $message->to($email);
+                $message->subject('Please confirm your verification!!!');
+            });
+            return view('auth.verifycation');
+        } else {
+            return redirect('home');
+        }
+    }
+
+    protected function verify($token)
+    {
+        $user = Auth::user();
+        if ($user && $user->token == $token) {
+            $user->confirm = 1;
+            $user->save();
+            return redirect('home');
+        } else {
+            return redirect('/login');
+        }
     }
 }

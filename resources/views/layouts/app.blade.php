@@ -52,24 +52,6 @@
                         @else
 
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories
-                                <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                  <li><a href="/category/create">Create Category</a></li>
-                                  <li><a href="/category/myCategories">My Categories</a></li>
-                                  <li><a href="/category">All Categories</a></li>
-                                </ul>
-                            </li>
-                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Posts
-                                <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                  <li><a href="/post/create">Create Post</a></li>
-                                  <li><a href="#">My Posts</a></li>
-                                  <li><a href="#">All Posts</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
 
 
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -98,6 +80,10 @@
                 </div>
             </div>
         </nav>
+
+        @if(Auth::check())
+            @include('layouts.leftSideBar')
+        @endif
 
         @yield('content')
     </div>

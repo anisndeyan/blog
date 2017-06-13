@@ -16,8 +16,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::get('/registration/verification', 'Auth\RegisterController@verification');
+Route::get('/registration/verification/{token}', 'Auth\RegisterController@verify');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::get('/category/{id}/posts', 'PostController@categoryPosts');
 Route::get('/category/myCategories', 'CategoryController@showMyCategories');
 Route::resource('/category', 'CategoryController');
 Route::resource('/post', 'PostController');

@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\DB;
 use App\Category;
 use Auth;
 use App\Http\Requests\CategoryRequest;
+
 class CategoryController extends Controller
 {
 
     public function __construct(Category $category)
     {
+        parent::__construct();
         $this->category = $category;
     }
     /**
@@ -65,7 +67,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = $this->category->where('id', $id)->first();
-        return view('categories.show', ['category' => $category]);
+        return view('categories.show', ['categories' => $category]);
     }
 
     public function showMyCategories(){
@@ -114,8 +116,6 @@ class CategoryController extends Controller
         $this->category->where('id', $id)->delete();
         $categories = $this->category->get();
         return redirect()->back()->with( ['categories' => $categories]);
-    }
+    }  
 
-
-    
 }
