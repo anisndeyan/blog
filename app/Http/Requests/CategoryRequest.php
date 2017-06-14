@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CategoryRequest extends FormRequest
 {
+  
    /**
     * Determine if the user is authorized to make this request.
     *
@@ -24,7 +25,7 @@ class CategoryRequest extends FormRequest
    public function rules()
    {
         return [
-           'name' => 'unique:categories|required|min:10|max:255',
+           'name' => 'unique:categories|required|min:5|max:255',
         ];
    }
 

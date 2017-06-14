@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Category;
+use App\User;
 
 class Category extends Model
 {
@@ -13,7 +15,7 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'user_id'
+         'id','name', 'user_id'
     ];
 
     /**
@@ -30,6 +32,6 @@ class Category extends Model
     }
 
     public function posts(){
-        return $this->hasMany('App\Post');
+        return $this->hasMany('App\Post','category_id', 'id');
     }
 }

@@ -11,7 +11,11 @@
 					<p class="col-sm-3">{{$post->title}}</p>
 					<p class="col-sm-3">{{$post->text}}</p>
 					<a href="/post/{{$post->id}}/edit" class="btn btn-primary col-sm-2">Edit</a>
-					<a type="button" class="btn btn-danger delete-post" data-id="{{$post->id}}" data-toggle="modal" data-target="#delete-post">Delete</a>
+					
+					{{ Form::open(['url' => ['post', $post->id] , 'method' => 'DELETE' , 'class'=>'form-horizontal']) }}
+
+                    		<button  class="glyphicon glyphicon-remove"></button>
+            		{{ Form::close() }}
 				</div>
 			@endforeach
 		</div>

@@ -27,3 +27,9 @@ Route::get('/category/{id}/posts', 'PostController@categoryPosts');
 Route::get('/category/myCategories', 'CategoryController@showMyCategories');
 Route::resource('/category', 'CategoryController');
 Route::resource('/post', 'PostController');
+
+
+
+
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleCallback');

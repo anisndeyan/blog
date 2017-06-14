@@ -16,10 +16,10 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function __construct()
     {
-    	$this->users_count = User::all()->count();
-    	$this->categories_count = Category::all()->count();
-    	$this->posts_count = Post::all()->count();
-    	View::share(['posts_count' => $this->posts_count, 'categories_count' => $this->categories_count, 'users_count' => $this->users_count]);
+    	$this->countUsers = User::all()->count();
+    	$this->countCategories = Category::all()->count();
+    	$this->countPosts = Post::all()->count();
+    	View::share(['countUsers' => $this->countUsers, 'countCategories' => $this->countCategories, 'countPosts' => $this->countPosts]);
     }
 
 }

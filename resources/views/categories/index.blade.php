@@ -21,10 +21,7 @@
 				</div>
 			@endif	
 
-		@endforeach
-
-	@else 
-		<p>No Category</p>	
+		@endforeach	
 	@endif
 
 @endsection()

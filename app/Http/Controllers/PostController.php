@@ -74,10 +74,7 @@ class PostController extends Controller
      */
     public function show($id, Guard $auth)
     {
-        $user_id = $id;
-        //$posts = $auth->user()->posts;
-        $loggedId = $auth->user()['id'];
-        $posts = Category::where('user_id', $loggedId)->first()->posts;
+        $posts = $auth->user()->posts;
         return view("posts.myPosts", ['posts' => $posts]);
     }
 
@@ -135,6 +132,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->post->where('id', $id)->delete();
+        $posts = $this->post->get();
+        return redirect()->back()->with( ['posts' => $posts]);
+        
     }
+
 }

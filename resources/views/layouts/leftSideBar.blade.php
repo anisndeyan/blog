@@ -7,7 +7,7 @@
 	                <h3><a href="/home">Home</a></h3>
 	            </li>
 	            <li>
-	                <a href="#" data-toggle="collapse" data-target="#toggleDemo" data-parent="#sidenav01" class="collapsed">Categories<span class="caret"></span> <b>{{$categories_count}}</b>
+	                <a href="#" data-toggle="collapse" data-target="#toggleDemo" data-parent="#sidenav01" class="collapsed">Categories<span class="caret"></span> <b>{{$countCategories}}</b>
 	                </a>
 	                <div class="collapse" id="toggleDemo" style="height: 0px;">
 	                    <ul class="nav nav-list">
@@ -18,7 +18,7 @@
 	                </div>
 	            </li>
 	            <li>
-	                <a href="#" data-toggle="collapse" data-target="#toggleDemo1" data-parent="#sidenav01" class="collapsed">Posts<span class="caret"></span> <b>{{$posts_count}}</b>
+	                <a href="#" data-toggle="collapse" data-target="#toggleDemo1" data-parent="#sidenav01" class="collapsed">Posts<span class="caret"></span> <b>{{$countPosts}}</b>
 	                </a>
 	                <div class="collapse" id="toggleDemo1" style="height: 0px;">
 	                    <ul class="nav nav-list">
@@ -30,7 +30,7 @@
 	            </li>
 	            <li>
 	                <a href="#" data-scroll="">
-	                    <span class="fa fa-anchor solo">Users  <b>{{$users_count}}</b></span>
+	                    <span class="fa fa-anchor solo">Users  <b>{{$countUsers}}</b></span>
 	                </a>
 	            </li>
 	        </ul>
