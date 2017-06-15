@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Auth;
-use App\User;
-use Mail;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use App\User;
+use Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Validator;
+use Mail;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/registration/verification';
+    protected $redirectTo = '/register/verify';
 
     /**
      * Create a new controller instance.
@@ -50,9 +51,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name'      => 'required|string|max:255',
+            'email'     => 'required|string|email|max:255|unique:users',
+            'password'  => 'required|string|min:6|confirmed',
         ]);
     }
 
@@ -64,11 +65,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        Session::flash('massage', 'Please verify your email!!!');
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'token' => md5(time())
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'password'  => bcrypt($data['password']),
+            'token'     => md5(time())
         ]);
     }
 
@@ -78,26 +80,26 @@ class RegisterController extends Controller
 
         if (Auth::user()->confirm == 0) {
             $token = Auth::user()->token;
-            $url = env('APP_URL', 'http://blog.dev').'/registration/verification/'. $token; 
             $email = Auth::user()->email;
+            $url = env('APP_URL', 'http://blog.dev').'/register/verify/'. $token; 
             Mail::send('auth.confirmEmail', ['url' => $url], function ($message) use ($email)
             {
                 $message->from('anisndeyan92@gmail.com', 'Laravel');
                 $message->to($email);
                 $message->subject('Please confirm your verification!!!');
             });
-            return view('auth.verifycation');
-        } else {
+            return view('home');
+        } 
+        else {
             return redirect('home');
         }
     }
 
     protected function verify($token)
     {
-        $user = Auth::user();
-        if ($user && $user->token == $token) {
-            $user->confirm = 1;
-            $user->save();
+        if (Auth::user() && Auth::user()->token == $token) {
+            Auth::user()->confirm = 1;
+            Auth::user()->save();
             return redirect('home');
         } else {
             return redirect('/login');

@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Category;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
@@ -15,7 +15,9 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-         'id','name', 'user_id'
+        'id',
+        'name', 
+        'user_id'
     ];
 
     /**
@@ -27,11 +29,13 @@ class Category extends Model
         
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\User');
     }
 
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany('App\Post','category_id', 'id');
     }
 }

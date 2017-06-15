@@ -6,6 +6,7 @@ use App\Category;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Post extends Model
 {
     
@@ -16,7 +17,11 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-       'id', 'title', 'text', 'category_id', 'image'
+       'id', 
+       'title', 
+       'text', 
+       'category_id', 
+       'image'
     ];
 
     /**

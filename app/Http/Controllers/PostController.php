@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
-use App\User;
-use App\Post;
 use App\Category;
-use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\PostRequest;
+use App\Post;
+use App\User;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Request;
+use Validator;
 
 class PostController extends Controller
 {   
@@ -50,10 +50,20 @@ class PostController extends Controller
      */
     public function store(PostRequest $request, Guard $auth, User $user)
     {
+        $imageName = null;
+
+        if ($request->hasFile('image')) {
+            $userImage = $request->file('image');
+            
+            $imageName = time().str_random().$userImage->getClientOriginalName();
+            $userImage->move(public_path().'/images/', $imageName);
+        }
+
         $inputs = [
             'title' => $request->get('title'),
             'text' => $request->get('text'),
-            'category_id' => $request->get('category')
+            'category_id' => $request->get('category'),
+            'image' => $imageName,
         ];
         if ($this->post->create($inputs)) {
             $user_id = $auth->id();
@@ -102,15 +112,27 @@ class PostController extends Controller
    
     public function update(PostRequest $request, $id)
     {
-                
+        $input = '';
+
+        if ($request->hasFile('image')) {
+            $userImage = $request->file('image');
+            $imageName = time().str_random().$userImage->getClientOriginalName();
+            $userImage->move(public_path().'/images/', $imageName);
+            $input = [
+                'title' => $request->get('title'),
+                'text' => $request->get('text'),
+                'image' => $imageName,
+                'category_id' => $request->get('category'),
+            ];
+        } else {
             $input = [
                 'title' => $request->get('title'),
                 'text' => $request->get('text'),
                 'category_id' => $request->get('category'),
             ];
-           
+        }    
         if ($this->post->where('id', $id)->update($input)) {
-            return redirect()->back()->with(['success' => "Category has successfully updated!!!"]);
+            return redirect()->back()->with(['success' => "Post has successfully updated!!!"]);
         } else {
             return redirect()->back()->with(['error' => "Something went wrong!!!"]);
         }

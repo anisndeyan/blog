@@ -6,7 +6,7 @@
 		@include('alerts')
 		    <h2>Update Post</h2>				
 			<div class="col-sm-offset-2 col-sm-10">
-				{{ Form::open(['url' => ['post', $post->id], 'method' => 'put', 'files' => true]) }}
+				{{ Form::open(['url' => ['post', $post->id], 'method' => 'put', 'files' => true]) }} {{ csrf_field() }}
 					<div class="form-group">
 						<div class="col-sm-6">
 							<label class="control-label col-sm-12" for="email">Post Title:</label>
@@ -34,7 +34,10 @@
 								@endforeach	
 							</select>
 						</div>
-						
+						<div class="col-sm-6">
+							<label class="control-label col-sm-12" for="text">Post image:</label>
+							<input type="file" name="image">
+						</div>
 						<div class="col-sm-12 btn-cont">        
 							<div class="col-sm-12">
 								<button type="submit" class="btn btn-primary">Update</button>

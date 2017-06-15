@@ -5,7 +5,7 @@
 		<div class="row col-md-8 col-md-offset-2"> 
 			@include('alerts')
 		    <h2>Add Post</h2>
-			{{ Form::open(['url' => ['post'], 'method' => 'POST', 'files' => true]) }}
+			{{ Form::open(['url' => ['post'], 'method' => 'POST', 'files' => true]) }} {{ csrf_field() }}
 				<div class="col-sm-12 form-group">
 					<div class="col-sm-6">
 						<label class="control-label col-sm-12" for="title">Post Title:</label>
@@ -35,8 +35,8 @@
 						</select>
 					</div>
 					<div class="col-sm-6">
-						{{-- <label class="control-label col-sm-12" for="text">Post image:</label>
-						<input type="file" name="image"> --}}
+						<label class="control-label col-sm-12" for="text">Post image:</label>
+						<input type="file" name="image">
 					</div>
 					<div class="col-sm-12 btn-cont">        
 						<div class="col-sm-12">

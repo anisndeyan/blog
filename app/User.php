@@ -15,7 +15,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'confirm', 'email', 'password', 'token', 'facebook_id'
+        'name', 
+        'confirm',
+        'email', 
+        'password', 
+        'token', 
+        'facebook_id'
     ];
 
     /**
@@ -24,14 +29,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 
+        'remember_token',
     ];
 
-    public function category(){
+    public function category()
+    {
         return $this->hasMany('App\Category');
     }
 
-    public function posts(){
+    public function posts()
+    {
         return $this->hasManyThrough('App\Post', 'App\Category');
     }
 }

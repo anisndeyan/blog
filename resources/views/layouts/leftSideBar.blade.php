@@ -1,11 +1,9 @@
-
+@if (Auth::user()->confirm == 1)
 <div class='container col-md-2 '>
 	<div id="sidebar-wrapper">
 	    <nav id="spy">
 	        <ul class="sidebar-nav nav">
-	            <li>
-	                <h3><a href="/home">Home</a></h3>
-	            </li>
+	            <li><h1 style="text-align:center;"><a href="/home">Home</a></h1></li>
 	            <li>
 	                <a href="#" data-toggle="collapse" data-target="#toggleDemo" data-parent="#sidenav01" class="collapsed">Categories<span class="caret"></span> <b>{{$countCategories}}</b>
 	                </a>
@@ -37,3 +35,4 @@
 	    </nav>
 	</div>
 </div>
+@endif

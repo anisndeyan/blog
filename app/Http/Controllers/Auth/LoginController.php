@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Auth;
-use Socialite;
 use App\User;
+use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -50,9 +50,10 @@ class LoginController extends Controller
     {
         try {
             $user = Socialite::driver('facebook')->user();
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return redirect('auth/facebook');
         }
+
         $authUser = $this->findOrCreateUser($user);
         Auth::login($authUser, true);
         return redirect()->route('home');
@@ -61,15 +62,15 @@ class LoginController extends Controller
     private function findOrCreateUser($facebookUser)
     {
         $authUser = User::where('facebook_id', $facebookUser->id)->first();
-        if($authUser){
+
+        if ($authUser) {
             return $authUser;
         }
-
         return User::create([
             'name' =>$facebookUser->name,
             'email' =>$facebookUser->email,
             'facebook_id' =>$facebookUser->id,
-
+            'confirm' => true
         ]);
     }
 

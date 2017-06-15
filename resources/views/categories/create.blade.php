@@ -7,7 +7,7 @@
   	<h1 style="text-align: center;">Create a Category</h1><br>
   	<div class="row">
 
-  		{{ Form::open(['url' => ['category'], 'method' => 'POST']) }}
+  		{{ Form::open(['url' => ['category'], 'method' => 'POST']) }} {{ csrf_field() }}
 
   		  <div class="form-group col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-xs-offset-2 col-sm-offset-2">
   				<input type="text" class="form-control" id="usr" placeholder="Category Name" name="name" value="{{old('name')}}">
