@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Category;
-use Auth;
-use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -48,11 +49,11 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $inputs = [
-            'name'  => $request->get('name'),
-            'user_id' => Auth::id()
+            'name'      => $request->get('name'),
+            'user_id'   => Auth::id()
             ];
 
-        if($this->category->create($inputs)){
+        if ($this->category->create($inputs)) {
             return redirect()->back()->with('success', 'Category has been successfully created!!!');
         }
         
@@ -67,12 +68,12 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = $this->category->where('id', $id)->first();
+        $category   = $this->category->where('id', $id)->first();
         return view('categories.show', ['categories' => $category]);
     }
 
     public function showMyCategories(){
-        $id = Auth::id();
+        $id         = Auth::id();
         $categories = $this->category->where('user_id', $id)->get();
         return view('categories.myCategories', ['categories' => $categories]);
 

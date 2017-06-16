@@ -53,23 +53,22 @@ class PostController extends Controller
         $imageName = null;
 
         if ($request->hasFile('image')) {
-            $userImage = $request->file('image');
-            
-            $imageName = time().str_random().$userImage->getClientOriginalName();
+            $userImage  = $request->file('image');
+            $imageName  = $userImage->getClientOriginalName();
             $userImage->move(public_path().'/images/', $imageName);
         }
 
         $inputs = [
-            'title' => $request->get('title'),
-            'text' => $request->get('text'),
-            'category_id' => $request->get('category'),
-            'image' => $imageName,
+            'title'         => $request->get('title'),
+            'text'          => $request->get('text'),
+            'category_id'   => $request->get('category'),
+            'image'         => $imageName,
         ];
         if ($this->post->create($inputs)) {
-            $user_id = $auth->id();
-            $posts = $auth->user()->posts;
-            $user = $user->where('id', $user_id)->first();
-            $posts = $user->posts;
+            $user_id    = $auth->id();
+            $posts      = $auth->user()->posts;
+            $user       = $user->where('id', $user_id)->first();
+            $posts      = $user->posts;
             return view("posts.myPosts", ['posts' => $posts]); 
         } else {
             return redirect()->back()->with(['error' => "Something went wrong!!!"]);
@@ -82,9 +81,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, Guard $auth)
+    public function show ($id, Guard $auth)
     {
-        $posts = $auth->user()->posts;
+        $posts  = $auth->user()->posts;
         return view("posts.myPosts", ['posts' => $posts]);
     }
 
@@ -95,10 +94,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
    
-    public function edit($id, Guard $auth)
+    public function edit ($id, Guard $auth)
     {
         $categories = $this->category->where('user_id', $auth->id())->get();
-        $post = $this->post->find($id);
+        $post       = $this->post->find($id);
         return view('posts.editPost', ['post' => $post, 'categories' => $categories]);   
     }
 
@@ -116,19 +115,19 @@ class PostController extends Controller
 
         if ($request->hasFile('image')) {
             $userImage = $request->file('image');
-            $imageName = time().str_random().$userImage->getClientOriginalName();
+            $imageName = $userImage->getClientOriginalName();
             $userImage->move(public_path().'/images/', $imageName);
             $input = [
-                'title' => $request->get('title'),
-                'text' => $request->get('text'),
-                'image' => $imageName,
-                'category_id' => $request->get('category'),
+                'title'         => $request->get('title'),
+                'text'          => $request->get('text'),
+                'image'         => $imageName,
+                'category_id'   => $request->get('category'),
             ];
         } else {
             $input = [
-                'title' => $request->get('title'),
-                'text' => $request->get('text'),
-                'category_id' => $request->get('category'),
+                'title'         => $request->get('title'),
+                'text'          => $request->get('text'),
+                'category_id'   => $request->get('category'),
             ];
         }    
         if ($this->post->where('id', $id)->update($input)) {
@@ -140,8 +139,8 @@ class PostController extends Controller
 
     public function categoryPosts($id)
     {
-        $category = $this->category->find($id);
-        $posts = $this->post->where('category_id', $id)->get();
+        $category   = $this->category->find($id);
+        $posts      = $this->post->where('category_id', $id)->get();
         return view("posts.postsCat", ['posts' => $posts, 'category' => $category->name]);
     }
 
