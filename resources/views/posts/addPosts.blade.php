@@ -7,7 +7,7 @@
 		    <h2>Add Post</h2>
 			{{ Form::open(['url' => ['post'], 'method' => 'POST', 'files' => true]) }} {{ csrf_field() }}
 				<div class="col-sm-12 form-group">
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<label class="control-label col-sm-12" for="title">Post Title:</label>
 						<input type="text" id="title" class="col-sm-12 form-control" placeholder="Enter Name" name="title">
 						@if ($errors->has('name'))
@@ -17,7 +17,7 @@
 			            @endif
 					</div>
 
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 						<label class="control-label col-sm-12" for="text">Post Text:</label>
 						<textarea class="col-sm-12 form-control" id="text" name="text" placeholder="Enter Text"></textarea>
 						@if ($errors->has('name'))
@@ -26,7 +26,7 @@
 			                </span>
 			            @endif
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<label class="control-label col-sm-12" for="category">Post Category:</label>
 						<select name="category" class="col-sm-12 form-control" id="category">
 							@foreach ($categories as $category)	
@@ -37,7 +37,7 @@
 					<div class="col-sm-6">
 						<label class="control-label col-sm-12" for="text">Post image:</label>
 						<input type="file" name="image">
-					</div>
+					</div><br>
 					<div class="col-sm-12 btn-cont">        
 						<div class="col-sm-12">
 							<button type="submit" class="btn btn-primary">Add</button>

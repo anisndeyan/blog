@@ -8,7 +8,7 @@
 			<div class="col-sm-offset-2 col-sm-10">
 				{{ Form::open(['url' => ['post', $post->id], 'method' => 'put', 'files' => true]) }} {{ csrf_field() }}
 					<div class="form-group">
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<label class="control-label col-sm-12" for="email">Post Title:</label>
 							<input type="text" class="col-sm-12 form-control" placeholder="Enter Name" name="title" value="{{$post->title}}">
 							@if ($errors->has('name'))
@@ -17,7 +17,7 @@
 				                </span>
 				            @endif
 						</div>
-						<div class="col-sm-6">
+						<div class="col-sm-8">
 							<label class="control-label col-sm-12" for="text">Post Text:</label>
 							<textarea class="col-sm-12 form-control" id="text" name="text" placeholder="Enter Text">{{$post->text}}</textarea>
 							@if ($errors->has('name'))
@@ -26,7 +26,7 @@
 				                </span>
 				            @endif
 						</div>
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<label class="control-label col-sm-12" for="category">Post Category:</label>
 							<select name="category" class="col-sm-12 form-control" id="category">
 								@foreach ($categories as $category)	
@@ -37,7 +37,7 @@
 						<div class="col-sm-6">
 							<label class="control-label col-sm-12" for="text">Post image:</label>
 							<input type="file" name="image">
-						</div>
+						</div><br>
 						<div class="col-sm-12 btn-cont">        
 							<div class="col-sm-12">
 								<button type="submit" class="btn btn-primary">Update</button>

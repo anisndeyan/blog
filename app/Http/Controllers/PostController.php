@@ -54,7 +54,7 @@ class PostController extends Controller
 
         if ($request->hasFile('image')) {
             $userImage  = $request->file('image');
-            $imageName  = $userImage->getClientOriginalName();
+            $imageName  = time()->$userImage->getClientOriginalName();
             $userImage->move(public_path().'/images/', $imageName);
         }
 
@@ -94,10 +94,11 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
    
-    public function edit ($id, Guard $auth)
+    public function edit (Post $post, Guard $auth)
     {
         $categories = $this->category->where('user_id', $auth->id())->get();
-        $post       = $this->post->find($id);
+        //dd($post);
+        //$post       = $this->post->find($id);
         return view('posts.editPost', ['post' => $post, 'categories' => $categories]);   
     }
 
@@ -109,10 +110,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
    
-    public function update(PostRequest $request, $id)
+    public function update(PostRequest $request, Post $post)
     {
         $input = '';
-
+        //dd($reques);
         if ($request->hasFile('image')) {
             $userImage = $request->file('image');
             $imageName = $userImage->getClientOriginalName();
@@ -130,7 +131,7 @@ class PostController extends Controller
                 'category_id'   => $request->get('category'),
             ];
         }    
-        if ($this->post->where('id', $id)->update($input)) {
+        if ($post->update($input)) {
             return redirect()->back()->with(['success' => "Post has successfully updated!!!"]);
         } else {
             return redirect()->back()->with(['error' => "Something went wrong!!!"]);

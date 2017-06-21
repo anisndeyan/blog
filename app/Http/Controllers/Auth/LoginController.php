@@ -67,10 +67,10 @@ class LoginController extends Controller
             return $authUser;
         }
         return User::create([
-            'name' =>$facebookUser->name,
-            'email' =>$facebookUser->email,
-            'facebook_id' =>$facebookUser->id,
-            'confirm' => true
+            'name'          =>$facebookUser->name,
+            'email'         =>$facebookUser->email,
+            'facebook_id'   =>$facebookUser->id,
+            'confirm'       => true
         ]);
     }
 

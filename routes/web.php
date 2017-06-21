@@ -27,6 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/category/{id}/posts', 'PostController@categoryPosts');
 Route::get('/category/myCategories', 'CategoryController@showMyCategories');
+
 Route::resource('/category', 'CategoryController');
 Route::resource('/post', 'PostController');
 
