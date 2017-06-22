@@ -31,3 +31,6 @@ Route::get('/category/myCategories', 'CategoryController@showMyCategories');
 Route::resource('/category', 'CategoryController');
 Route::resource('/post', 'PostController');
 
+
+
+

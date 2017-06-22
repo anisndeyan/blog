@@ -8,10 +8,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	})
 	.state('register', {
         url: '/register',
-        templateUrl: 'views/auth/registration.html'
+        templateUrl: 'views/auth/registration.html',
+        controller: 'AuthController'
     })
     .state('login', {
         url: '/login',
-        templateUrl: 'views/auth/login.html'
+        templateUrl: 'views/auth/login.html',
+        controller: 'AuthController'
+    })
+    .state('home', {
+	    url: "/home",
+	    templateUrl: "views/auth/home.html",
+        controller: 'HomeController'
     })
 })
