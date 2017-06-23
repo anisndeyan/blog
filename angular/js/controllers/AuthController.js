@@ -6,6 +6,7 @@ app.controller('AuthController', ['$scope', '$http','$rootScope','$state', funct
     
 	$scope.register = function (inputs) {
 		$scope.inputs = inputs;
+		//console.log($scope.inputs)
 		
 		$http.post('/api/register', $scope.inputs)
 
@@ -20,15 +21,26 @@ app.controller('AuthController', ['$scope', '$http','$rootScope','$state', funct
 	}
 	$scope.login = function(inputs){
 		$scope.inputs = inputs;
+
 		$http.post('/api/login', $scope.inputs)
 
-			.then( function (response){
-				
-				$state.go('home');
-			})
+			.then(function (response){
+				console.log(response.data);
+
+                localStorage.setItem('user',response.data.data.name);
+				localStorage.setItem('id',response.data.data.id);
+
+                $rootScope.id = localStorage['id'];
+                $rootScope.user = localStorage['user'];
+             
+                localStorage.setItem('loggedIn',true);
+                $rootScope.loggedIn = localStorage['loggedIn'];
+               
+                $state.go('home');
+			});
 	}
 
-	$rootScope.user = localStorage['user'];
+ 	$rootScope.user = localStorage['user'];
     $rootScope.id = localStorage['id'];
     $rootScope.loggedIn = localStorage['loggedIn'];
 

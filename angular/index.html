@@ -6,16 +6,18 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
         <script src='js/route.js' type="text/javascript"></script>
         <script src="js/controllers/AuthController.js"></script>
         <script src="js/controllers/HomeController.js"></script>
+        <script src="js/controllers/CategoryController.js"></script>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="css/app.css" type="text/css" rel="stylesheet">
         
     </head>
     <body>
-        <div ng-app="app">
+        <div ng-app="app" ng-controller="AuthController">
             <nav class="navbar navbar-default navbar-static-top">
                 <div class="container">
                     <div class="navbar-header">
@@ -39,7 +41,7 @@
                             <!-- Authentication Links -->
                             <li ng-hide="loggedIn"><a ui-sref="login">Login</a></li>
                             <li ng-hide="loggedIn"><a ui-sref="register">Registration</a></li>
-                            <li ng-show="loggedIn" sclass="dropdown">
+                            <li ng-show="loggedIn" class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{user}}
                                     <span class="caret"></span>
                                 </a>

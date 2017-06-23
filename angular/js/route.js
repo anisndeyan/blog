@@ -4,7 +4,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	
 	$stateProvider
 	.state('index', {
-		url: ""
+		url: "/"
 	})
 	.state('register', {
         url: '/register',
@@ -18,7 +18,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     .state('home', {
 	    url: "/home",
-	    templateUrl: "views/auth/home.html",
+	    templateUrl: "views/home/home.html",
         controller: 'HomeController'
     })
+    .state('createCategory', {
+        url: "/createcategory",
+        templateUrl : "views/category/create.html",
+        controller: 'CategoryController'
+    })
+    
 })
