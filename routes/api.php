@@ -23,3 +23,8 @@ Route::get('logout', 'AuthController@logout');
 Route::get('/home', 'HomeController@index');
 
 Route::post('createCategory', 'CategoryController@create');
+Route::get('myCategory', 'CategoryController@myCategories');
+Route::get('allCategory', 'CategoryController@allCategories');
+Route::post('editCategory/{id}', 'CategoryController@edit');
+
+Route::resource('categories', "CategoriesController");

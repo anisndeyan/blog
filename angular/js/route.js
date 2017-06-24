@@ -22,8 +22,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'HomeController'
     })
     .state('createCategory', {
-        url: "/createcategory",
+        url: "/createCategory",
         templateUrl : "views/category/create.html",
+        controller: 'CategoryController'
+    })
+    .state("myCategory", {
+        url: "/myCategory",
+        templateUrl : "views/category/my.html",
+        controller: 'CategoryController'
+    })
+    .state("allCategory", {
+        url: "/allCategory",
+        templateUrl : "views/category/all.html",
+        controller: 'CategoryController'
+    })
+   	.state("editCategory", {
+        url: "/edit-category/:id",
+        templateUrl : "views/category/edit.html",
         controller: 'CategoryController'
     })
     

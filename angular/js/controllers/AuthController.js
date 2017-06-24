@@ -19,6 +19,7 @@ app.controller('AuthController', ['$scope', '$http','$rootScope','$state', funct
 	            $state.go('home');
 			});
 	}
+	
 	$scope.login = function(inputs){
 		$scope.inputs = inputs;
 
