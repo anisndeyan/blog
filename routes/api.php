@@ -22,9 +22,20 @@ Route::post('register', 'AuthController@register');
 Route::get('logout', 'AuthController@logout');
 Route::get('/home', 'HomeController@index');
 
-Route::post('createCategory', 'CategoryController@create');
-Route::get('myCategory', 'CategoryController@myCategories');
-Route::get('allCategory', 'CategoryController@allCategories');
-Route::post('editCategory/{id}', 'CategoryController@edit');
+Route::post('category/create', 'CategoryController@create');
+Route::get('index', 'CategoryController@myCategories');
+Route::get('category/all', 'CategoryController@allCategories');
+Route::get('category/{id}/edit', 'CategoryController@edit');
+Route::put('category/{id}/update', 'CategoryController@update');
+Route::delete('category/{id}', 'CategoryController@delete');
 
-Route::resource('categories', "CategoriesController");
+Route::post('post/create', 'PostController@create');
+Route::get('post/index', 'PostController@myPosts');
+Route::get('post/all', 'PostController@allPosts');
+Route::get('post/{id}/edit', 'PostController@edit');
+Route::post('post/{id}/update', 'PostController@update');
+Route::delete('post/{id}', 'PostController@delete');
+
+Route::get('/category/{id}/post', 'CategoryController@categoryPost');
+
+
