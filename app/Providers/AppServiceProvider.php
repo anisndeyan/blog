@@ -16,12 +16,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer ('layouts.leftSideBar', function($view){
-            $countUsers = User::all()->count();
-            $countCategories = Category::all()->count();
-            $countPosts = Post::all()->count();
-            $view->with (compact ('countUsers', 'countCategories', 'countPosts'));
-        });
+        // view()->composer ('layouts.leftSideBar', function($view){
+        //     $countUsers = User::all()->count();
+        //     $countCategories = Category::all()->count();
+        //     $countPosts = Post::all()->count();
+        //     $view->with (compact ('countUsers', 'countCategories', 'countPosts'));
+        // });
     }
 
     /**

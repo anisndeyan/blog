@@ -1,10 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import axios from 'axios';
-window.Vue= Vue;
+
+window.Vue = Vue;
+window.axios = axios;
 Vue.use(VueRouter);
-window.axios =axios;
+
 Vue.prototype.$http = axios;
+
 window._ = require('lodash');
 
 /**
