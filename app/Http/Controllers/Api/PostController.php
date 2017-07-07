@@ -48,14 +48,14 @@ class PostController extends Controller
         }     
     }
 
-    public function myPosts (Guard $auth)
+    public function index (Guard $auth)
     {   
         $posts  = $auth->user()->posts()->get();
         return response()->json(['posts' => $posts]);
     }
 
-    public function allPosts()
-    {
+    public function show()
+    {   
         $posts = $this->post->get();
         return response()->json(['posts' => $posts]);
     }

@@ -51,7 +51,7 @@ class CategoryController extends Controller
         $inputs = [
             'name'      => $request->get('name'),
             'user_id'   => Auth::id()
-            ];
+        ];
 
         if ($this->category->create($inputs)) {
             return redirect()->back()->with('success', 'Category has been successfully created!!!');

@@ -6,16 +6,11 @@ app.controller('HomeController', ['$scope', '$http', '$state', '$rootScope', fun
 
     $http.get('/api/home')
     	.then(function(response){
-    		//console.log(response);
-
 	    	localStorage.setItem('userCount', response.data.userCount);
 	    	$rootScope.userCount = localStorage['userCount'];
 	    	localStorage.setItem('categoryCount',response.data.categoryCount);
 	    	$rootScope.categoryCount = localStorage['categoryCount'];
 	    	localStorage.setItem('postCount',response.data.postCount);
 	    	$rootScope.postCount = localStorage['postCount'];
-	    	
-
     	})
-	
 }]);

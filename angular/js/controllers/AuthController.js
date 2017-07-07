@@ -5,9 +5,7 @@ app.controller('AuthController', ['$scope', '$http','$rootScope','$state', funct
     $rootScope.loggedIn = false;
     
 	$scope.register = function (inputs) {
-		$scope.inputs = inputs;
-		//console.log($scope.inputs)
-		
+		$scope.inputs = inputs;	
 		$http.post('/api/register', $scope.inputs)
 
 			.then(function(response){
@@ -22,12 +20,8 @@ app.controller('AuthController', ['$scope', '$http','$rootScope','$state', funct
 	
 	$scope.login = function(inputs){
 		$scope.inputs = inputs;
-
 		$http.post('/api/login', $scope.inputs)
-
 			.then(function (response){
-				console.log(response.data);
-
                 localStorage.setItem('user',response.data.data.name);
 				localStorage.setItem('id',response.data.data.id);
 
@@ -47,11 +41,11 @@ app.controller('AuthController', ['$scope', '$http','$rootScope','$state', funct
 
 	$scope.logout = function () {
 		$http.get('/api/logout')
-		.then(function (response) {
-				localStorage.clear();
-        		$rootScope.loggedIn = false;
-        		$state.go('index');
-		});
+			.then(function (response) {
+					localStorage.clear();
+	        		$rootScope.loggedIn = false;
+	        		$state.go('index');
+			});
 	}
 }]);
 
