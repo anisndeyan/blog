@@ -57,11 +57,20 @@ app.controller('CategoriesController', ['$scope','$rootScope','$http','$state','
                 $scope.message = response.data.message;
             }); 
     }
-    $scope.delete = function(inputs){
-        $scope.inputs = inputs;
-        $http.delete('/api/category/' + $scope.inputs)
+    $scope.delete = function(id){
+        $http.delete('/api/category/' + id)
         	.then(function(response){
             $scope.message = response.data.message;
+            var filtered = [];
+            for(var i = 0; i < $scope.categories.length; i++){
+                if($scope.categories[i].id != id){
+                    filtered.push($scope.categories[i]);
+                }
+            }
+            if($rootScope.categoryCount) {
+                $rootScope.categoryCount--;
+            }
+            $scope.categories = filtered;
         }); 
         
     }    
