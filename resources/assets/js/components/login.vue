@@ -35,7 +35,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-md-8 col-md-offset-4">
-								<button v-on:click="loginPost" class="btn btn-primary" type="submit">
+								<button v-on:click="loginPost" class="btn btn-primary">
 								Login
 								</button>
 								
@@ -52,7 +52,7 @@
 </div>
 </template>
 <script>
-import {router} from '../routes.js'
+
 	export default {
 		data() {
 			return {
@@ -69,37 +69,32 @@ import {router} from '../routes.js'
 		},
 		methods:{
 			loginPost (){
-				let vm = this;
-				console.log(router),
-				
-				axios.post('/api/login', vm.loginDetails)
+				axios.post('/api/login', this.loginDetails)
 				.then(function(response){
-					// vm.$router.go('/home');
+					window.location.href = "/vue/#/home";
 				})
 				.catch(function(error){
-					var errors = error.response;
-					console.log(errors)
-					if(errors.status === 422){
-						if(errors.data){
-							if(errors.data.email){
-								vm.errorsEmail = true
-								vm.emailError = _.isArray(errors.data.email) ? errors.data.email[0] : errors.data.email 
-							}
-							if(errors.data.password){
-								vm.errorsPassword = true
-								vm.passwordError = _.isArray(errors.data.password) ? errors.data.password[0] : errors.data.password
-							}
-						}
-					}
-				});
-				
+					console.log('error' + error);
+				// 	var errors = error.response;
+				// 	console.log(errors)
+				// 	if(errors.status === 422){
+				// 		if(errors.data){
+				// 			if(errors.data.email){
+				// 				this.errorsEmail = true
+				// 				this.emailError = _.isArray(errors.data.email) ? errors.data.email[0] : errors.data.email 
+				// 			}
+				// 			if(errors.data.password){
+				// 				this.errorsPassword = true
+				// 				this.passwordError = _.isArray(errors.data.password) ? errors.data.password[0] : errors.data.password
+				// 			}
+				// 		}
+				// 	}
+				});	
 			},
 			getToken(){
                return document.querySelector('#token').getAttribute('content');
            	}
-		},
-		component:{
-            
-        }
+		}
+		
 	}
 </script>

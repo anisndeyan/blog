@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "ng-file-upload": "^12.2.13",
+    "vee-validate": "^2.0.0-rc.6",
     "vue-router": "^2.7.0"
   }
 }

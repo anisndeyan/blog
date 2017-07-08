@@ -23,7 +23,7 @@ Route::get('login/facebook/callback', 'Auth\LoginController@handleCallback');
 Route::get('/register/verify', 'Auth\RegisterController@verification');
 Route::get('/register/verify/{token}', 'Auth\RegisterController@verify');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/category/{id}/posts', 'PostController@categoryPosts');
 Route::get('/category/myCategories', 'CategoryController@showMyCategories');

@@ -14,8 +14,9 @@ class AuthController extends Controller
 	
 	public function __construct()
     {
-         // $this->middleware('guest')->except('logout');;
+        $this->middleware('guest')->except('logout');
     }
+
 
 	public function register(Request $request)
 	{
@@ -33,30 +34,21 @@ class AuthController extends Controller
             'token' 	=> md5(time()),
         ]);
 
-		
+        Auth::login($user);
 		return response()->json(['data'=> $request->all()]);
 	}
 
 
 	public function login (Request $request, User $user)
 	{
-        // dd('sdf');
 		$this->validate($request, [
             'email'    	=> 'required|email',
             'password' 	=> 'required',
         ]);
-
         $result = ['email' => $request->input('email'), 'password' => $request->input('password')];
-            // if(!Auth::attempt($result, $request->has('remember'))){
-            //     return response()->json(['message'=>"Wrong username or password"]);
-            // }
             $user = $user->where('email', $request->input('email'))->first();
             Auth::login($user);
-            // dd('server message');
-            return response()->json(['data'=>Auth::user()]);
-        
-
-		
+            return response()->json(['data'=>Auth::user()]);	
 	}
 
 

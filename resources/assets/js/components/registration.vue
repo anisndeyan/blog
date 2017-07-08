@@ -87,15 +87,16 @@
                     password:this.password,
                     password_confirmation:this.password_confirmation
                 };
-                //console.log(inputs),
-                this.$http.post('/api/register', inputs)
+                axios.post('/api/register', inputs)
                 .then(function(response){
-                    //console.log(response.data);
-                    /*this.$router.go('/home');
-                    console.log(this.$router)*/
+                    //console.log(response);
+                    window.location.href = "/vue/#/home";
+                    
                      
+                }, function(response){
+                    //console.log("error" + response)
                 })
-                .catch((err) => console.log(err)) 
+                
             }
         }
 

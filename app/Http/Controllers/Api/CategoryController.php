@@ -54,28 +54,22 @@ class CategoryController extends Controller
 
     public function update(CategoryRequest $request, $id)
     {
-    	// dd($id);
         if($this->category->where('id', $id)->update(['name' => $request->get('name')])){
             return response()->json(['message' => "Category has been successfully updated!!!"]);
-        } else{
-            return response()->json(['message' => "Something went wrong!!!"]); 
         }
     }
 
     public function delete($id)
     {
         $this->category->where('id', $id)->delete();
-         $category = $this->category->get();
+        $category = $this->category->get();
         return response()->json(['message' => "Category has been successfully deleted!!!"]);
     } 
 
     public function categoryPost($id, Post $post, Category $category)
     {
         $category   = $this->category->find($id);
-        
-       
-        $posts = $category->posts()->get();
-        //dd($posts);
+        $posts      = $category->posts()->get();
         return response()->json(['posts'=>$posts, 'category_id' => $id]);
     } 
 }

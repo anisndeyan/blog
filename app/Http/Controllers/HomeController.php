@@ -13,8 +13,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        parent::__construct();
-        $this->middleware('auth')
+       // parent::__construct();
+        $this->middleware('auth');
     }
 
     /**
@@ -22,8 +22,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     return view('home');
-    // }
+    public function index()
+    { dd(\Auth::user());
+        return view('home');
+    }
 }

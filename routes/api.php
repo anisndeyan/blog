@@ -20,22 +20,22 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('login', 'AuthController@login');
 Route::post('register', 'AuthController@register');
 Route::get('logout', 'AuthController@logout');
-// Route::get('/home', 'HomeController@index');
+Route::get('home', 'HomeController@index');
 
 Route::post('category/create', 'CategoryController@create');
-Route::get('index', 'CategoryController@myCategories');
+Route::get('category/index', 'CategoryController@myCategories');
 Route::get('category/all', 'CategoryController@allCategories');
 Route::get('category/{id}/edit', 'CategoryController@edit');
-Route::put('category/{id}/update', 'CategoryController@update');
+Route::put('category/{id}', 'CategoryController@update');
 Route::delete('category/{id}', 'CategoryController@delete');
 
-Route::post('post/create', 'PostController@create');
-Route::get('post/index', 'PostController@myPosts');
-Route::get('post/all', 'PostController@allPosts');
-Route::get('post/{id}/edit', 'PostController@edit');
-Route::post('post/{id}/update', 'PostController@update');
-Route::delete('post/{id}', 'PostController@delete');
+// Route::post('post/create', 'PostController@create');
+// Route::get('post/index', 'PostController@myPosts');
+// Route::get('post/all', 'PostController@allPosts');
+// Route::get('post/{id}/edit', 'PostController@edit');
+// Route::post('post/{id}/update', 'PostController@update');
+// Route::delete('post/{id}', 'PostController@delete');
 
-Route::get('/category/{id}/post', 'CategoryController@categoryPost');
+// Route::get('/category/{id}/post', 'CategoryController@categoryPost');
 
 
