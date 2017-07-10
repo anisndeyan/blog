@@ -24,11 +24,11 @@ class PostController extends Controller
         $this->category = $category;
     }
 
-    public function create(PostRequest $request, Guard $auth, User $user)
+    public function create(Request $request, Guard $auth, User $user)
     {
         $image_name = null;
-
-        if ($request->hasFile('image')) {
+        $category = Category::all();
+        if ($request->hasFile('image')) {            
             $user_image = $request->file('image');
             $image_name = time().$user_image->getClientOriginalName();
             $user_image->move(public_path().'/images/', $image_name);
@@ -41,13 +41,16 @@ class PostController extends Controller
             $posts      = $auth->user()->posts;
             $user       = $user->where('id', $user_id)->first();
             $posts      = $user->posts;
+            return response()->json(['message' => 'Post has been successfully created']);
 
-            return response()->json(['message' => 'Post has been successfully created']); 
-        } else {
-            return response()->json(['message' => "Something went wrong!!!"]); 
-        }     
+        }   
     }
-
+    public function cat(Guard $auth){
+     
+       $categories = $this->category->where('user_id', $auth->id())->get();
+       return response()->json(['categories' => $categories]);
+        
+    }
     public function myPosts (Guard $auth)
     {   
         $posts  = $auth->user()->posts()->get();

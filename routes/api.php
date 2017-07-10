@@ -24,18 +24,19 @@ Route::get('home', 'HomeController@index');
 
 Route::post('category/create', 'CategoryController@create');
 Route::get('category/index', 'CategoryController@myCategories');
-Route::get('category/all', 'CategoryController@allCategories');
+Route::get('category/show', 'CategoryController@allCategories');
 Route::get('category/{id}/edit', 'CategoryController@edit');
 Route::put('category/{id}', 'CategoryController@update');
 Route::delete('category/{id}', 'CategoryController@delete');
 
-// Route::post('post/create', 'PostController@create');
-// Route::get('post/index', 'PostController@myPosts');
-// Route::get('post/all', 'PostController@allPosts');
-// Route::get('post/{id}/edit', 'PostController@edit');
-// Route::post('post/{id}/update', 'PostController@update');
-// Route::delete('post/{id}', 'PostController@delete');
+Route::post('post/create', 'PostController@create');
+Route::get('post/create', 'PostController@cat');
+Route::get('post/index', 'PostController@myPosts');
+Route::get('post/show', 'PostController@allPosts');
+Route::get('post/{id}/edit', 'PostController@edit');
+Route::post('post/{id}/update', 'PostController@update');
+Route::delete('post/{id}', 'PostController@delete');
 
-// Route::get('/category/{id}/post', 'CategoryController@categoryPost');
+Route::get('/category/{id}/post', 'CategoryController@categoryPost');
 
 

@@ -41,15 +41,15 @@ class CategoryController extends Controller
     }
 
     public function allCategories()
-    {
+    {   $id = Auth::id();
         $categories   = $this->category->get();
-        return response()->json(['categories' => $categories]);
+        return response()->json(['categories' => $categories, "user_id" => $id ]);
     }
 
     public function edit($id)
     {
-        $category = $this->category->find($id);
-       return response()->json(['category' => $category]);
+        $category = $this->category->find($id);        
+        return response()->json(['category' => $category]);
     }
 
     public function update(CategoryRequest $request, $id)

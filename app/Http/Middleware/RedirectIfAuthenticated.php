@@ -17,7 +17,7 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        \Session::flush();
+       // \Session::flush();
         if (Auth::guard($guard)->check() && Auth::user()->confirm == 1) {
             return redirect('/home');
         }

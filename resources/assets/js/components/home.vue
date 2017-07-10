@@ -21,9 +21,9 @@
 	                </a>
 	                <div class="collapse" id="toggleDemo1" style="height: 0px;">
 	                    <ul class="nav nav-list">
-	                        <li><a >Create Post</a> </li>
-	                        <li><a >View My Posts</a></li>
-	                        <li><a >View All Posts</a></li>
+	                   		<li><router-link to="/post/create">Create Post</router-link></li>
+	                        <li><router-link to="/post/index">View My Posts</router-link></li>
+	                        <li><router-link to="/post/show">View All Posts</router-link></li>
 	                    </ul>
 	                </div>
 	            </li>

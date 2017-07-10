@@ -1,12 +1,12 @@
 <template>
 	<div class="container">
 		<div class="row col-md-8 col-md-offset-2"> 
-		    <h2>My Categories</h2>
+		    <h2>All Categories</h2>
 		   
 			<div v-for="category in categories" class="col-sm-12"  >
 				<a class="col-sm-8"> {{ category.name }}</a>
-				<router-link :to="'/category/'+category.id+'/edit' " v-if="user == category.parent_id" class="btn btn-primary col-sm-2" >Edit </router-link>
-				<a v-on:click="remove(category.id)" class="btn btn-danger col-sm-2" v-if="user == category.parent_id">Delete</a>
+				<router-link :to="'/category/'+category.id+'/edit' " v-if="user == category.user_id" class="btn btn-primary col-sm-2" >Edit </router-link>
+				<a v-on:click="remove(category.id)" class="btn btn-danger col-sm-2" v-if="user == category.user_id">Delete</a>
 			</div>
 		</div>
 		<router-view></router-view>
@@ -17,7 +17,7 @@ export default {
 	data(){
 		return {
 			categories:"",
-			user:sessionStorage.getItem('user_id'),
+			user:sessionStorage.getItem('user_id')
 		}
 	},
 	created(){
@@ -25,9 +25,11 @@ export default {
 	},
 	methods:{
 		index(){
-			axios.get('/api/category/index')
+			axios.get('/api/category/show')
     		.then((response)=> {
     			this.categories = response.data.categories;
+    			sessionStorage.setItem('user_id',response.data.user_id);
+
     		})	
 		},
         remove(id){
